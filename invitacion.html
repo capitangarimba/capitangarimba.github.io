@@ -18,7 +18,7 @@ html, body {
   /*
   background-image: url("http://www.designbolts.com/wp-content/uploads/2013/02/Free-Seamless-Wood-Textures-Patterns-For-3D-Mapping-2.jpg");
   */
-  background-image: url("http://images2.layoutsparks.com/1/181103/wedding-marriage-pink-black.jpg");
+  background-image: url("img/background.png");
 }
 
 body {
@@ -176,17 +176,29 @@ body {
   width: 0;
   height: 0;
   border-right: 200px solid  rgb(10, 61, 16);; 
- /* border-right: 200px solid #e6e6e6; */
   border-top: 140px solid transparent;
   border-bottom: 140px solid transparent;
 }
 
 #letter {
-   text-align: center;
+  text-align: center;
   font-size: 1em;
   font-family: 'Great Vibes', cursive;
-  background: -webkit-linear-gradient(top, whitesmoke 0%, #F3F2D3 100%);
-  box-shadow: 0px 2px 5px #1a1a1a;
+  background-color: #F3F2D3;
+  background-image: -webkit-linear-gradient(  
+   
+    hsla(0,0%,0%,.025), 
+    hsla(0,0%,100%,.05) 50%, 
+    
+    hsla(0,0%,0%,.05) 50%,
+    hsla(0,0%,100%,.05) 100%
+
+   );
+
+   box-shadow: inset 0 0 0 .1em hsla(0,0%,0%,.1),
+               inset 0 0 1em hsla(0,0%,0%,.05),
+               0 .1em .25em hsla(0,0%,0%,.5);
+
   border-radius: 5px;
   position: absolute;
   top: 3px;
@@ -204,26 +216,12 @@ body {
 }
 
 #letter hgroup {
-  margin-top: 20px;
+  margin-top: 46px;
   margin-bottom: 20px;
 }
 
-#letter hgroup h1 {
-  font-size: 1.6em;
-  color: #b3b3b3;
-  text-align: center;
-  text-shadow: 0px 2px 1px white;
-}
-
-#letter hgroup h2 {
-  color: #d64c4c;
-  margin-top: -20px;
-  text-align: center;
-  text-shadow: 0px 1px 1px white;
-}
-
 #bea  {
-  margin-top: -20px;
+ margin-top: -20px;
  margin-left: -230px;
 }
 
@@ -239,26 +237,28 @@ body {
   font-size: 0.85em;
   line-height: 1.45em;
   margin: 30px 50px 0 50px;
+
 }
 
-#letter p:first-letter {
-  color: #d64c4c;
-  text-shadow: 0px 2px 1px white;
-  font-size: 2.5em;
-  float: left;
-  line-height: 1.2em;
-  padding: 10px 10px 0 0;
-}
 #photo {
   border: 0;
   width: 380px;
   padding-left: 5px;
-  padding-top: 5px;
+  padding-top: 8px;
 }
 
-#photo:hover {
+#photo div {
+  width: 380px;
+  font-size: 0.7em;
+  position: fixed;
+  margin-left: -82px;
+  margin-top: -28px;
+  color: rgb(150,150,20);
+}
 
-  width: 500px;
+
+#photo img {
+  width: 340px;
 }
 </style></head><body>
 
@@ -277,7 +277,10 @@ body {
                 <div id="folds"></div>
                 
                 <div id="letter">
-                    <img src="img/photo.png" id="photo"/>
+                    <div id="photo">
+                      <img src="img/photo.png" />
+                      <div>Frederic Leighton: The painter's honeymoon</div>
+                    </div>
                     <hgroup>
                         <div id="bea">
                           <div>Beatriz</div>
