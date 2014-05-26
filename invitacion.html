@@ -34,7 +34,7 @@ body {
 }
 
 #perspective {
-  position: fixed;
+  position: absolute;
   top: 200px;
   left: 50%;
   margin-left: -200px;
@@ -230,6 +230,10 @@ body {
    margin-right: -240px;
 } 
 
+#letter:hover {
+  background: blue;
+
+}
 
 #letter p {
   color: #333333;
@@ -340,7 +344,7 @@ body {
 
         // w
   			W.css({
-             'visibility':'visible'
+             'visibility': 'visible'
 				});
 
         
@@ -367,7 +371,7 @@ body {
              'transition':'none',
                 'top': '-423px',
                 'zoom': '150%',
-                'left' : '144px'
+               
                     
               });
 
@@ -383,7 +387,7 @@ body {
 				L.css({
 					'transition':'all .5s 1s',
 					'top':'-550px',
-					'height':'500px'
+          'height':'500px'
 				});
      		P.css({
      			'transition':'all 1s',
