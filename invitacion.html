@@ -47,11 +47,11 @@ body {
   width: 400px;
   height: 280px;
   transform-style: preserve-3d;
-  z-index: -6;
   -moz-border-radius: 5px;
   -webkit-border-radius: 5px;
   border-radius: 5px;
   margin-left: -180px;
+  background-color: rgb(18, 53, 18);
 }
 
 #container:hover {
@@ -72,7 +72,7 @@ body {
   left: 0;
   width: 100%;
   height: 100%;
-  backface-visibility: hidden;
+  
 }
 
 .front {
@@ -121,10 +121,10 @@ body {
 }
 
 .back {
-  
-/* background: -webkit-linear-gradient(top, whitesmoke 0%, #8f8f8f 100%); */
-   background: -webkit-linear-gradient(top, rgb(20,70,20) 0%, #000 100%); 
+  background: -webkit-linear-gradient(top, rgb(20,70,20) 0%, #000 100%); 
   transform: rotateY(-180deg);
+  visibility: hidden;
+  
 }
 
 #open {
@@ -260,12 +260,33 @@ body {
   color: rgb(150,150,20);
 }
 
-
 #photo img {
   width: 340px;
 }
+
+#clickMe{
+  background-image: url('img/arrow.png');
+  background-position: left 56px top 36px;
+  background-repeat: no-repeat;
+  margin-left: -234px;
+  margin-top: -193px;
+  height: 125px;
+  width: 198px;
+}
+
+#clickMe p {
+  font-size: 2em;
+  position: relative;
+  
+}
 </style></head><body>
+
 <div id="perspective">
+
+      <div id="clickMe">
+         <p>Haz click</p>
+      </div>
+
         <div id="container">
           <div class="face front">
                 <div id="white">
@@ -315,45 +336,53 @@ body {
 <script src='http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js'></script>
 
 <script>     
-       var C = $('#container'),
-  	  		A = $('#open'),
-  	  		L = $('#letter'),
-				  H = $('#letter hgroup h2'),
-          F = $('.front'),
-          W = $('#wrapper'),
-          I = $('#photo'),
-          S = $('#sello'),
-  	  		P = $('#perspective');
+       var container = $('#container'),
+  	  		open = $('#open'),
+  	  		letter = $('#letter'),
+				  front = $('.front'),
+          back = $('.back'),
+          wrapper = $('#wrapper'),
+          clickMe = $('#clickMe'),
+          perspective = $('#perspective');
+       
+    front.click(function(){
 
-   F.click(function(){
+        clickMe.css({
+          'display' :'none'
+        });
 
 				// gira
-        C.css({
+        container.css({
           'transition':'all 1s',
           'transform':'rotateY(180deg)',
           'pointer-events': 'none',
-          'box-shadow': 'none'
+          'box-shadow': 'none',
+          'visibility' : 'visible'
         });
 
+        back.css({
+          'display': 'block',
+          'visibility': 'visible'
+        })
+
         // abre
-				A.css({
+				open.css({
 					'transition':'all 1s .5s',
 					'transform':'rotateX(180deg)',
 					'z-index': '0'
 				});
 
         // w
-  			W.css({
+  			wrapper.css({
              'visibility': 'visible'
 				});
 
-        
-        F.css({
-             'opacity': 0
+        front.css({
+             'opacity': 0,
         });
 
         // Sobre fuera
-        L.css({
+        letter.css({
           'transition':'all 1s 1s',
           'top':'-550px',
           'height':'500px',
@@ -361,43 +390,23 @@ body {
           
         });
 
-        P.css({
+        perspective.css({
           'transition':'all 1s',
           'transform':'translateY(450px)'
         });
 
         window.setTimeout( function(){ 
-           L.css({
+           letter.css({
              'transition':'none',
                 'top': '-423px',
                 'zoom': '150%',
-               
-                    
+                '-moz-transform': 'scale(1.5)'
               });
 
            $('body').css({'height:':'1000px'})
         }, 2000);
       
     });
-
-    
-     	// Sobre trasladoY / carta
-     L.click(function() {
-        alert("L click");
-				L.css({
-					'transition':'all .5s 1s',
-					'top':'-550px',
-          'height':'500px'
-				});
-     		P.css({
-     			'transition':'all 1s',
-     			'transform':'translateY(450px)'
-     		});
-				H.css({
-     			'transition':'all 1s',
-     			'transform':'rotateZ(180deg)'
-				});
-     	});
 
 </script>
 </body></html>
