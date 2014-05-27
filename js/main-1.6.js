@@ -79,14 +79,17 @@ $(function() {
 	
 	navigation_links.click( function(event) {
 
-		$.scrollTo(
-			$(this).attr("href"),
-			{
-				duration: 1000,
-				offset: { 'left':0, 'top':-0.08*$(window).height() }
-			}
-		);
+		if ( $(this).attr("title") != "Invitación")){
+
+			$.scrollTo(
+				$(this).attr("href"),
+				{
+					duration: 1000,
+					offset: { 'left':0, 'top':-0.08*$(window).height() }
+				}
+			);
 			event.preventDefault();
+		}
 	});
 
     $('figure.responsive-image').picture();
