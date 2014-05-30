@@ -264,8 +264,28 @@ body {
 #photo img {
   width: 340px;
 }
+
+#clickMe{
+  background-image: url('img/arrow.png');
+  background-position: left 56px top 36px;
+  background-repeat: no-repeat;
+  margin-left: -234px;
+  margin-top: -193px;
+  height: 125px;
+  width: 198px;
+}
+
+#clickMe p {
+  font-size: 2em;
+  position: relative;
+}
+
+
 </style></head><body>
 <div id="perspective">
+      <div id="clickMe">
+         <p>Haz click</p>
+      </div>
         <div id="container">
           <div class="face front">
                 <div id="white">
@@ -315,45 +335,43 @@ body {
 <script src='http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js'></script>
 
 <script>     
-       var C = $('#container'),
-  	  		A = $('#open'),
-  	  		L = $('#letter'),
-				  H = $('#letter hgroup h2'),
-          F = $('.front'),
-          W = $('#wrapper'),
-          I = $('#photo'),
-          S = $('#sello'),
-  	  		P = $('#perspective');
+       var container = $('#container'),
+  	  		open = $('#open'),
+  	  		letter = $('#letter'),
+          front = $('.front'),
+          wrapper = $('#wrapper'),
+          clickMe = $('#clickMe'),
+          perspective = $('#perspective');
 
-   F.click(function(){
+   front.click(function(){
+
+        // hide clickMe
+        clickMe.css({
+          'display' :'none'
+        });
 
 				// gira
-        C.css({
+        container.css({
           'transition':'all 1s',
           'transform':'rotateY(180deg)',
           'pointer-events': 'none',
           'box-shadow': 'none'
         });
 
-        // abre
-				A.css({
-					'transition':'all 1s .5s',
-					'transform':'rotateX(180deg)',
-					'z-index': '0'
-				});
+        perspective.css({
+          'transition':'all 1s',
+          'transform':'translateY(450px)'
+        });
 
-        // w
-  			W.css({
-             'visibility': 'visible'
-				});
-
-        
-        F.css({
-             'opacity': 0
+         // abre
+        open.css({
+          'transition':'all 1s .5s',
+          'transform':'rotateX(180deg)',
+          'z-index': '0'
         });
 
         // Sobre fuera
-        L.css({
+        letter.css({
           'transition':'all 1s 1s',
           'top':'-550px',
           'height':'500px',
@@ -361,13 +379,9 @@ body {
           
         });
 
-        P.css({
-          'transition':'all 1s',
-          'transform':'translateY(450px)'
-        });
-
+        // zoom
         window.setTimeout( function(){ 
-           L.css({
+           letter.css({
              'transition':'none',
                 'top': '-423px',
                 'zoom': '150%',
@@ -377,27 +391,28 @@ body {
 
            $('body').css({'height:':'1000px'})
         }, 2000);
+
+/*
+       
+
+        // w
+  			wrapper.css({
+             'visibility': 'visible'
+				});
+
+        
+        front.css({
+             'opacity': 0
+        });
+
+        
+
+        
       
+*/      
     });
 
-    
-     	// Sobre trasladoY / carta
-     L.click(function() {
-        alert("L click");
-				L.css({
-					'transition':'all .5s 1s',
-					'top':'-550px',
-          'height':'500px'
-				});
-     		P.css({
-     			'transition':'all 1s',
-     			'transform':'translateY(450px)'
-     		});
-				H.css({
-     			'transition':'all 1s',
-     			'transform':'rotateZ(180deg)'
-				});
-     	});
+   
 
 </script>
 </body></html>
