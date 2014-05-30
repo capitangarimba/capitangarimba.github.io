@@ -1,6 +1,5 @@
 <!DOCTYPE html><html class=''>
 <head>
-  <meta name="viewport" content="width=800, initial-scale=1"/>
   <meta charset='UTF-8'>
   <meta name="robots" content="noindex">
   <link rel='stylesheet' href='css/normalize.min.css'>
@@ -24,13 +23,12 @@ html, body {
 body {
    font-family: 'Great Vibes', cursive;
   -webkit-font-smoothing: antialiased;
-  height: 1500px;
 
 }
 
 #wrapper {
   width: 100%;
-  height : 1200px;
+  height: 100%;
   background: rgba(13, 13, 13, 0.5);
   visibility: hidden;
 }
@@ -49,11 +47,11 @@ body {
   width: 400px;
   height: 280px;
   transform-style: preserve-3d;
+  
   -moz-border-radius: 5px;
   -webkit-border-radius: 5px;
   border-radius: 5px;
   margin-left: -180px;
-  background-color: rgb(18, 53, 18);
 }
 
 #container:hover {
@@ -74,7 +72,7 @@ body {
   left: 0;
   width: 100%;
   height: 100%;
-  
+  backface-visibility: hidden;
 }
 
 .front {
@@ -124,9 +122,10 @@ body {
 
 .back {
   background: -webkit-linear-gradient(top, rgb(20,70,20) 0%, #000 100%); 
+  background: -webkit-linear-gradient(top, rgb(20,70,20) 0%, #000 100%); 
+  background: -moz-linear-gradient(top, rgb(20,70,20) 0%, #000 100%); 
+  background: linear-gradient(top, rgb(20,70,20) 0%, #000 100%); 
   transform: rotateY(-180deg);
-  visibility: hidden;
-  
 }
 
 #open {
@@ -262,6 +261,7 @@ body {
   color: rgb(150,150,20);
 }
 
+
 #photo img {
   width: 340px;
 }
@@ -279,16 +279,14 @@ body {
 #clickMe p {
   font-size: 2em;
   position: relative;
-  
 }
+
+
 </style></head><body>
-
 <div id="perspective">
-
       <div id="clickMe">
          <p>Haz click</p>
       </div>
-
         <div id="container">
           <div class="face front">
                 <div id="white">
@@ -299,6 +297,7 @@ body {
             </div>
             <div class="face back">
                 <div id="open"></div>
+              
                
                 <div id="folds"></div>
                 
@@ -321,7 +320,7 @@ body {
                     <div>de nuestro matrimonio, que tendr&aacute; lugar</div>
                     <div>el pr&oacute;ximo 23 de agosto a las 19:30 horas</div>
                     <div>en la finca Los Rosales,</div>
-                    <div>Real Cortico de San Isidro, Aranjuez</div>
+                    <div>Real Cortico de San Isidro, Arajnuez</div>
                     <p/>
                     <p>
                       <div id="bea">696150480</div>
@@ -341,14 +340,20 @@ body {
        var container = $('#container'),
   	  		open = $('#open'),
   	  		letter = $('#letter'),
-				  front = $('.front'),
-          back = $('.back'),
+          front = $('.front'),
           wrapper = $('#wrapper'),
           clickMe = $('#clickMe'),
           perspective = $('#perspective');
-       
-    front.click(function(){
 
+   front.click(function(){
+
+        // fade background
+        wrapper.css({
+          'visibility': 'visible'
+
+        });
+
+        // hide clickMe
         clickMe.css({
           'display' :'none'
         });
@@ -359,38 +364,7 @@ body {
           'transform':'rotateY(180deg)',
           'pointer-events': 'none',
           'box-shadow': 'none',
-          'visibility' : 'visible'
-        });
-
-        back.css({
-          'display': 'block',
-          'visibility': 'visible'
-        })
-
-        // abre
-				open.css({
-					'transition':'all 1s .5s',
-					'transform':'rotateX(180deg)',
-					'z-index': '0'
-				});
-
-        // w
-  			wrapper.css({
-             'visibility': 'visible'
-				});
-
-        front.css({
-             'opacity': 0,
-             'visibility' : 'hidden'
-        });
-
-        // Sobre fuera
-        letter.css({
-          'transition':'all 1s 1s',
-          'top':'-550px',
-          'height':'500px',
-          'z-index' : 200,
-          
+          'z-index': -6
         });
 
         perspective.css({
@@ -398,20 +372,39 @@ body {
           'transform':'translateY(450px)'
         });
 
+         // abre
+        open.css({
+          'transition':'all 1s .5s',
+          'transform':'rotateX(180deg)',
+          'z-index': '0'
+        });
+
+            
+        // Sobre fuera
+        letter.css({
+          'transition':'all 1s 1s',
+          'top':'-550px',
+          'height':'500px',
+          'z-index' : 200,
+        });
+
+
+        // zoom
         window.setTimeout( function(){ 
-           letter.css({
-             'transition':'none',
-                'top': '-423px',
-                'zoom': '150%',
-                '-moz-transform': 'scale(1.5)'
-              });
+               letter.css({
+                 'transition':'none',
+                    'top': '-423px',
+                    'zoom': '150%',
+                    '-moz-transform': 'scale(1.5)'
+                  });
+
+               $('body').css({'height:':'1000px'})
+            }, 2000);
 
 
-           $('body').css({'height:':'1000px'});
-           wrapper.css({'height:':'1000px'});
-        }, 2000);
-      
     });
+
+   
 
 </script>
 </body></html>
