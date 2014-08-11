@@ -79,7 +79,7 @@ $(function() {
 	
 	navigation_links.click( function(event) {
 
-		if ( $(this).attr("title") != "Invitación")){
+		if ( $(this).attr("title") != "Invitación"){
 
 			$.scrollTo(
 				$(this).attr("href"),
